@@ -4,7 +4,6 @@ import {API_END_POINT} from '../../common/utils/utils';
 
 const initialstate = {
     players : [],
-    teams : [],
     playersStatus : "idle",
 
     playersFetchError : false,
@@ -20,7 +19,7 @@ export const fetchPlayersData = createAsyncThunk(
         try{
             const  response = await axios.get(API_END_POINT);
             console.log(response.data);
-            return response.data;
+            return response.data.playerList;
 
         }catch(err){
             console.log(err)
@@ -38,8 +37,7 @@ const playerSlice = createSlice({
         },
         [fetchPlayersData.fulfilled] : (state,action) => {
            state.playersStatus = "success"
-           state.players = action.payload.playerList
-           state.teams = action.payload.teamsList
+           state.players = action.payload
          
         },
         [fetchPlayersData.rejected] : (state) => {
