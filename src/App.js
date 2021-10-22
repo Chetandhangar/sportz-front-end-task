@@ -1,13 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Header} from './common/index'
+import {PlayersListing} from './features/Players/Pages/PlayersListing'
+import {Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-       Front-End  Task
-      </header>
+      <Header />
+      <Routes>
+        <Route path="/" element={<PlayersListing />} />
+      </Routes>
     </div>
   );
 }
