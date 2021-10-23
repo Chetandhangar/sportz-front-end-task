@@ -18,6 +18,12 @@ const useStyles = makeStyles((theme) => ({
     },
     searchTextField : {
       width : "50%"
+    },
+    loader: {
+      textAlign : "center"
+    },
+    errorDiv : {
+      textAlign : "center"
     }
   }));
 

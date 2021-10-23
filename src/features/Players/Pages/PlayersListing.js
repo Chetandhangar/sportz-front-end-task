@@ -3,13 +3,14 @@ import {useSelector, useDispatch} from 'react-redux';
 import {fetchPlayersData} from '../playerSlice';
 import {PlayerCard} from '../components/Players/PlayerCard';
 import useStyles from './playerStyles'
-import {Container, Grid, TextField} from '@material-ui/core'
+import {Container, Grid, TextField} from '@material-ui/core';
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const  PlayersListing = () => {
     
     const[searchTerm , setSearchTerm] = useState("");
 
-    const {players} = useSelector((state) => state.player);
+    const {players,playersFetchLoading} = useSelector((state) => state.player);
     const  dispatch = useDispatch();
     const classes = useStyles();
 
@@ -20,7 +21,7 @@ export const  PlayersListing = () => {
     const sortData = [...players].sort((a,b) => a.Value - b.Value)
     console.log(sortData,'from sortdat')
  
-
+    console.log(playersFetchLoading,'from loading status')
 
     return(
         <div>
@@ -32,21 +33,29 @@ export const  PlayersListing = () => {
                    onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-            <Grid container spacing={3}>
-               {sortData?.filter((player) => {
-                   if(searchTerm === ""){
-                       return player;
-                   }else if(player?.PFName.toLowerCase().includes(searchTerm.toLowerCase())){
-                       return player;
-                   }else if(player?.TName.toLowerCase().includes(searchTerm.toLowerCase())){
-                       return player;
-                   }else return null;
-               }).map((player) =>(
-                 <Grid item key={player?.Id} xs={12} sm={12} md={4}>
-                     <PlayerCard player={player}/>
-                 </Grid>
-               ))}  
-            </Grid>
+                {playersFetchLoading === true ? 
+                (
+                <div className={classes.loader}> 
+                   <ClipLoader color={"blue"} loading={playersFetchLoading}  size={150} />
+                </div>
+                )
+                 :
+                 (<Grid container spacing={3}>
+                    {sortData?.filter((player) => {
+                        if(searchTerm === ""){
+                            return player;
+                        }else if(player?.PFName.toLowerCase().includes(searchTerm.toLowerCase())){
+                            return player;
+                        }else if(player?.TName.toLowerCase().includes(searchTerm.toLowerCase())){
+                            return player;
+                        }else return null;
+                    }).map((player) =>(
+                      <Grid item key={player?.Id} xs={12} sm={12} md={4}>
+                          <PlayerCard player={player}/>
+                      </Grid>
+                    ))}  
+                </Grid>
+                )}
             </Container>
         </div>
     )

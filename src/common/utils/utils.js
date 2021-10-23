@@ -9,8 +9,6 @@ export function getLocalDataTime(date){
    let Hours = `${currentDate.getHours()}`;
    let Minutes = `${currentDate.getMinutes() < 10 ? "0" : ""}${currentDate.getMinutes()}`;
    let Seconds = `${currentDate.getSeconds() < 10 ? "0" : ""}${currentDate.getSeconds()}`;
-   let Am = `${currentDate.getTimezoneOffset()}`;
-   console.log(Am)
        
     let DateTime = `On ${Day}/${Month}/${Year} ${"  "}, At ${Hours}:${Minutes}:${Seconds} ${`${Hours < 12 ? "AM" : "PM"}`}`
     if(date){

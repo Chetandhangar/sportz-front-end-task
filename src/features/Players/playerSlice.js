@@ -5,9 +5,7 @@ import {API_END_POINT} from '../../common/utils/utils';
 const initialstate = {
     players : [],
     playersStatus : "idle",
-
-    playersFetchError : false,
-    playersFetchErrorStatus : "idle" 
+    playersFetchLoading : false, 
 }
 
 
@@ -34,14 +32,17 @@ const playerSlice = createSlice({
     extraReducers : {
         [fetchPlayersData.pending] : (state) => {
           state.playersStatus = "loading"
+          state.playersFetchLoading = true 
         },
         [fetchPlayersData.fulfilled] : (state,action) => {
            state.playersStatus = "success"
+           state.playersFetchLoading = false
            state.players = action.payload
          
         },
         [fetchPlayersData.rejected] : (state) => {
             state.playersStatus = "error"
+            state.playersFetchLoading = false
         }
 
     }
