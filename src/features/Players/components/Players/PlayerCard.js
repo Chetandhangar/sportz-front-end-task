@@ -1,15 +1,19 @@
 import React from 'react';
 import useStyles from './PlayerCardStyles';
 import {Card, CardActionArea, CardMedia, Typography, CardContent} from '@material-ui/core'
+import {getLocalDataTime} from '../../../../common/utils/utils';
 
 export const PlayerCard = ({ player}) => {
     const classes = useStyles();
+    console.log(player)
     
-    function getLocalDataTime(date){
-      var currentDate= new Date(`${date} UTC`);
-    return currentDate.toString()
-    };
-  
+    function getFixture(CCode , VsCCode){
+        if(CCode === "" && VsCCode === ""){
+          return "Information Not Available"
+        }else{
+          return `${CCode} vs ${VsCCode}`
+        }
+    }
 
     return(
         <React.Fragment>
@@ -35,7 +39,7 @@ export const PlayerCard = ({ player}) => {
           </Typography>
 
           <Typography gutterBottom   variant="body2"  component="p">
-           Next Match:  {`${player?.UpComingMatchesList[0].CCode} vs ${player.UpComingMatchesList[0].VsCCode} `}   
+           Next Match:  {getFixture(player?.UpComingMatchesList[0].CCode,player.UpComingMatchesList[0].VsCCode)}   
            {",   "} {getLocalDataTime(player?.UpComingMatchesList[0].MDate)}                         
           </Typography>
           
