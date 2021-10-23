@@ -10,9 +10,15 @@ const useStyles = makeStyles((theme) => ({
       height : 140,
     },
     productContainer : {
-      marginTop : "3rem"
+      marginTop : "3rem",
     },
- 
+    searchField : {
+      marginBottom : "3rem",
+      textAlign : "center"
+    },
+    searchTextField : {
+      width : "50%"
+    }
   }));
 
   export default useStyles;

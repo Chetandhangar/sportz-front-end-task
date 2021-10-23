@@ -4,7 +4,6 @@ import {Card, CardActionArea, CardMedia, Typography, CardContent} from '@materia
 
 export const PlayerCard = ({ player}) => {
     const classes = useStyles();
-    console.log(player);
     
     function getLocalDataTime(date){
       var currentDate= new Date(`${date} UTC`);
