@@ -1,4 +1,4 @@
-Sportz Interactive Front End -Task.
+Sportz Interactive Front End -Task. This app is craeted using React and Redux.
 
 This app renders the list of players by dafualt in Ascending order.
 
